@@ -1,6 +1,9 @@
+import 'package:VendorApp/main_pages/page_logic.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/components/roundedButton.dart';
 import 'package:VendorApp/constants.dart';
+
+import '../main_pages/home_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
@@ -54,7 +57,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             RoundedButton(
               title: 'Register',
               color: Colors.blueAccent,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, PageLogic.id);
+              },
             ),
           ],
         ),

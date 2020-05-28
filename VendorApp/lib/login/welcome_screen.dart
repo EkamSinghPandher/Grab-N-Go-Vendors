@@ -41,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                     ),
                     Text(
-                      'vendor',
+                      'Vendor',
                       style: TextStyle(fontSize: 20.0),
                     )
                   ],
