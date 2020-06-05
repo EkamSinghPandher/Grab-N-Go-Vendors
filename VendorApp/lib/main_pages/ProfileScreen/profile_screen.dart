@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Models/Food.dart';
 import 'package:VendorApp/Models/Location.dart';
+import './screen_layout.dart';
 
 
 class ProfileScreen extends StatefulWidget {
@@ -47,8 +48,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   );
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      
+      body:ProfileScreenLayout(vendor: thisVendor, height: height, width: width,)
     );
   }
 }

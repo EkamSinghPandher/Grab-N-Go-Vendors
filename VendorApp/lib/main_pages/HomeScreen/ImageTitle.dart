@@ -50,7 +50,7 @@ class ImageTitle extends StatelessWidget {
                 )
               ],
             ),
-            bottom: 5,
+            top: 5,
             left: 0,
           )
         ],
