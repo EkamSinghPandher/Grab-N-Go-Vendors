@@ -11,13 +11,22 @@ class ImageTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      child: Stack(
         children: <Widget>[
           Container(height: height * 0.33, width: width, child: image),
           const SizedBox(height: 15),
-          Text(
-            title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Positioned(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              color: Colors.white,
+              child: Text(
+                title,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
+              ),
+            ),
+            bottom: 0,
+            left: 0,
+          
           )
         ],
       ),

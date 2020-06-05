@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:VendorApp/components/roundedButton.dart';
 import 'package:VendorApp/constants.dart';
 
-import '../main_pages/home_screen.dart';
-
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
   @override

@@ -1,6 +1,6 @@
 import 'package:VendorApp/main_pages/history_screen.dart';
-import 'package:VendorApp/main_pages/home_screen.dart';
-import 'package:VendorApp/main_pages/profile_screen.dart';
+import 'package:VendorApp/main_pages/HomeScreen/home_screen.dart';
+import 'package:VendorApp/main_pages/ProfileScreen/profile_screen.dart';
 import 'package:VendorApp/main_pages/shop_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -33,11 +33,11 @@ class _PageLogicState extends State<PageLogic> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_basket),
-            title: Text('Shops'),
+            title: Text('Orders'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.speaker_notes),
-            title: Text('History'),
+            title: Text('Chat'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
