@@ -34,6 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TyperAnimatedTextKit(
+                      isRepeatingAnimation: false,
                       text: ['Grab n\' Go'],
                       textStyle: TextStyle(
                         fontSize: 45.0,

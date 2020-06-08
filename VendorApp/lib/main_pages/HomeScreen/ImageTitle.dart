@@ -11,33 +11,35 @@ class ImageTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height*0.33,
       child: Stack(
         children: <Widget>[
-          Container(height: height * 0.33, width: width, child: image),
-          const SizedBox(height: 15),
+          Container(height: height * 0.33, width: double.infinity, child: image),
           Positioned(
             width: width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.fromLTRB(15, 10, 10, 3),
-                      child: Text(title,
-                          style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(16, 0, 10, 10),
-                      child: Text('FineFoods @ Utown',
-                          style: TextStyle(fontSize: 15, color: Colors.white)),
-                    ),
-                  ],
+                Container(
+                  height: 80,
+                                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15, 10, 10, 3),
+                        child: Text(title,
+                            style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)),
+                      ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(16, 0, 10, 10),
+                        child: Text('FineFoods @ Utown',
+                            style: TextStyle(fontSize: 15, color: Colors.white)),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   height: height* 0.06,
@@ -50,7 +52,7 @@ class ImageTitle extends StatelessWidget {
                 )
               ],
             ),
-            top: 5,
+            bottom: 5,
             left: 0,
           )
         ],

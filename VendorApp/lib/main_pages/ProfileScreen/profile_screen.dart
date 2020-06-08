@@ -1,57 +1,27 @@
+import 'package:VendorApp/Services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/Models/Vendor.dart';
-import 'package:VendorApp/Models/Food.dart';
-import 'package:VendorApp/Models/Location.dart';
-import './screen_layout.dart';
-
 
 class ProfileScreen extends StatefulWidget {
+  static Vendor user;
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  static List<Food> menu = [
-    Food(
-        foodImage: Image.asset('images/xlbfood.png'),
-        foodName: 'Food name',
-        foodPrice: 0,
-        stock: 10,
-        id: 0),
-    Food(
-        foodImage: Image.asset('images/xlbfood.png'),
-        foodName: 'Food name',
-        foodPrice: 0,
-        stock: 10,
-        id: 1),
-    Food(
-        foodImage: Image.asset('images/xlbfood.png'),
-        foodName: 'Food name',
-        foodPrice: 0,
-        stock: 10,
-        id: 2),
-    Food(
-        foodImage: Image.asset('images/xlbfood.png'),
-        foodName: 'Food name',
-        foodPrice: 0,
-        stock: 10,
-        id: 3),
-  ];
-  Vendor thisVendor = Vendor(
-    location: Location.utown1,
-    stallName: 'Xiao Long Bao Stall',
-    email: 'dummyemail',
-    password: 'dummypass',
-    phoneNumber: 999,
-    menu: menu,
-    stallImage: 'images/shop-image.jpg',
-  );
+  final _auth = AuthService();
+  
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    //double width = MediaQuery.of(context).size.width;
+   // double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body:ProfileScreenLayout(vendor: thisVendor, height: height, width: width,)
+      body: Center(
+        child: FloatingActionButton(child: Text('sign out'), onPressed: () async{
+          _auth.signOut();
+        },),
+      ),
+      //body:ProfileScreenLayout(vendor: ProfileScreen.user, height: height, width: width,)
     );
   }
 }
