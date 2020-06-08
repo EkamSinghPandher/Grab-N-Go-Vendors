@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "551764910483",
+    "firebase_url": "https://grab-n--go.firebaseio.com",
+    "project_id": "grab-n--go",
+    "storage_bucket": "grab-n--go.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551764910483:android:28edbae7f8d3ab93e88866",
+        "android_client_info": {
+          "package_name": "com.example.VendorApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551764910483-bn79u64kr479p109ucur84gajf9bl42j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDhjpAHTP00AH8jf6OAxhfXcquvOf42Gg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551764910483-bn79u64kr479p109ucur84gajf9bl42j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

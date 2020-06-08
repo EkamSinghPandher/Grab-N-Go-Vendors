@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:VendorApp/login/welcome_screen.dart';
-import 'package:VendorApp/login/login_screen.dart';
-import 'package:VendorApp/login/registration_screen.dart';
+import 'package:VendorApp/main_pages/loginScreen/welcome_screen.dart';
+import 'package:VendorApp/main_pages/loginScreen/login_screen.dart';
+import 'package:VendorApp/main_pages/loginScreen/registration_screen.dart';
 import 'main_pages/page_logic.dart';
 
 void main() {

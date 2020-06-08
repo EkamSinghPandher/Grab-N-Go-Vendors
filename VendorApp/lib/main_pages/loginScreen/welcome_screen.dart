@@ -1,5 +1,5 @@
-import 'package:VendorApp/login/login_screen.dart';
-import 'package:VendorApp/login/registration_screen.dart';
+import 'package:VendorApp/main_pages/loginScreen/login_screen.dart';
+import 'package:VendorApp/main_pages/loginScreen/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:VendorApp/components/roundedButton.dart';
