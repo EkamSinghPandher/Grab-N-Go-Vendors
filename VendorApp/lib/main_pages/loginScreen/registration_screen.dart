@@ -1,4 +1,5 @@
 import 'package:VendorApp/Services/auth.dart';
+import 'package:VendorApp/main_pages/loginScreen/Wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/components/roundedButton.dart';
 import 'package:VendorApp/components/constants.dart';
@@ -88,6 +89,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           errorMsg =
                               'Please enter a unused or valid email or password';
                         });
+                      }else{
+                        Navigator.of(context).pushReplacementNamed(Wrapper.id);
                       }
                     }
                   },
