@@ -1,19 +1,28 @@
 import './Food.dart';
+import 'location.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'Vendor.g.dart';
+
+@JsonSerializable()
 class Vendor {
-  String uid;
-  List<Food> menu;
-  String stallName;
-  String email;
-  int phoneNumber;
-  String stallImage;
+  final Location loc;
+  final String uid;
+  final List<Food> menu;
+  final String stallName;
+  final String email;
+  final int phoneNumber;
+  final String stallImage;
 
   Vendor(
-      {this.uid,
+      {this.loc,
+      this.uid,
       this.menu,
       this.stallName,
       this.email,
       this.phoneNumber,
       this.stallImage});
 
+  factory Vendor.fromJson(Map<String, dynamic> json) => _$VendorFromJson(json);
+  Map<String, dynamic> toJson() => _$VendorToJson(this);
 }

@@ -1,6 +1,5 @@
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:VendorApp/Data/dummy_data.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -19,7 +18,7 @@ class AuthService {
             phoneNumber: 96457651,
             stallImage: 'images/shop-image.jpg',
             stallName: 'New Stall',
-            menu: menu);
+            menu: []);
   }
 
   // sign in with email and password

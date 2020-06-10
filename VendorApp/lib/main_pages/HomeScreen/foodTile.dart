@@ -26,11 +26,11 @@ class FoodTile extends StatelessWidget {
                     children: <Widget>[
                       Container(
                         padding: EdgeInsets.all(3),
-                        child: ClipRRect(
+                        child: null/*ClipRRect(
                             borderRadius: BorderRadius.circular(4),
                             child: 
                               food.foodImage,
-                            ),
+                            ),*/
                       ),
                       SizedBox(width: 18),
                       Text(food.foodName)
