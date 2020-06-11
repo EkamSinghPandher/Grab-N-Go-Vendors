@@ -1,24 +1,21 @@
+import 'package:VendorApp/Models/User.dart';
 import 'package:VendorApp/Models/Vendor.dart';
+import 'package:VendorApp/Services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
-  Stream<Vendor> get user {
-    return _auth.onAuthStateChanged.map(_vendorFromUser);
+  Stream<User> get user {
+    return _auth.onAuthStateChanged.map(_userFromData);
   }
 
-  Vendor _vendorFromUser(FirebaseUser user) {
+  User _userFromData(FirebaseUser user){
     return user == null
         ? null
-        : Vendor(
-            uid: user.uid,
-            email: user.email,
-            phoneNumber: 96457651,
-            stallImage: 'images/shop-image.jpg',
-            stallName: 'New Stall',
-            menu: []);
+        : User(uid: user.uid);
   }
 
   // sign in with email and password
@@ -26,7 +23,7 @@ class AuthService {
     try{
       AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
-      return _vendorFromUser(user);
+      return _userFromData(user);
     }catch(error){
       return null;
     }
@@ -37,7 +34,14 @@ class AuthService {
     try{
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
-      return _vendorFromUser(user);
+      await DataService(uid:user.uid).updateVendorData(Vendor(
+            uid: user.uid,
+            email: user.email,
+            phoneNumber: 96457651,
+            stallImage: 'images/shop-image.jpg',
+            stallName: 'New Stall',
+            menu: []));
+      return _userFromData(user);
     }catch(error){
       return null;
     }

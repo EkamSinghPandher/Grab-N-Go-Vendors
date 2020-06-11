@@ -2,7 +2,7 @@ import './Food.dart';
 import 'location.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'Vendor.g.dart';
+part 'vendor.g.dart';
 
 @JsonSerializable()
 class Vendor {
