@@ -1,8 +1,11 @@
+import 'package:VendorApp/Models/Vendor.dart';
+import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/main_pages/history_screen.dart';
 import 'package:VendorApp/main_pages/HomeScreen/home_screen.dart';
 import 'package:VendorApp/main_pages/ProfileScreen/profile_screen.dart';
 import 'package:VendorApp/main_pages/shop_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PageLogic extends StatefulWidget {
   static const String id = 'page_logic';
@@ -21,34 +24,37 @@ class _PageLogicState extends State<PageLogic> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            title: Text('Orders'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.speaker_notes),
-            title: Text('Chat'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+    return StreamProvider<Vendor>(
+      create: (_) => DataService().vendors,
+          child: Scaffold(
+        body: _children[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_basket),
+              title: Text('Orders'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.speaker_notes),
+              title: Text('Chat'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile'),
+            ),
+          ],
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
       ),
     );
   }

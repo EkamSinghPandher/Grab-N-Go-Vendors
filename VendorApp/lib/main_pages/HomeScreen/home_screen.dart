@@ -1,3 +1,5 @@
+import 'package:VendorApp/Models/User.dart';
+import 'package:VendorApp/Services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './ScreenLayout.dart';
@@ -11,22 +13,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
-  /*void addFood(Image image, String name, int price, int stock) {
-    menu.add(Food(
-        foodImage: image,
-        foodName: name,
-        foodPrice: price,
-        stock: stock,
-        id: menu.length));
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
-    Vendor user = Provider.of<Vendor>(context);
-    return Scaffold(
-      body: Container(child: HomeScreenLayout(user)),
+    final User user = Provider.of<User>(context);
+    return StreamProvider<Vendor>.value(
+      value: DataService(uid: user.uid).vendors,
+      child: Scaffold(
+        body: Container(child: HomeScreenLayout()),
+      ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import './Food.dart';
-import 'location.dart';
+import 'Location.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'Vendor.g.dart';

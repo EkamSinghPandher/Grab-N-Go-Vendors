@@ -1,15 +1,15 @@
+import 'package:provider/provider.dart';
+
 import './food_cards.dart';
 import 'package:flutter/material.dart';
 import './ImageTitle.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 
 class HomeScreenLayout extends StatelessWidget {
-  final Vendor vendor;
-
-  const HomeScreenLayout(this.vendor);
 
   @override
   Widget build(BuildContext context) {
+    Vendor vendor = Provider.of<Vendor>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(

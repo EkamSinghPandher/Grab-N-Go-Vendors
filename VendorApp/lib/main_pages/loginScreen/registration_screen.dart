@@ -1,8 +1,9 @@
 import 'package:VendorApp/Services/auth.dart';
-import 'package:VendorApp/main_pages/loginScreen/Wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/components/roundedButton.dart';
 import 'package:VendorApp/components/constants.dart';
+
+import 'Wrapper.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';

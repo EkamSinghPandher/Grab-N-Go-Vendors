@@ -8,11 +8,12 @@ part of 'Vendor.dart';
 
 Vendor _$VendorFromJson(Map<String, dynamic> json) {
   return Vendor(
-    loc: json['loc'] == null
-        ? null
-        : Location.fromJson(json['loc'] as Map<String, dynamic>),
+    loc: json['loc'],
     uid: json['uid'] as String,
-    menu: json['menu'] as List,
+    menu: (json['menu'] as List)
+        ?.map(
+            (e) => e == null ? null : Food.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     stallName: json['stallName'] as String,
     email: json['email'] as String,
     phoneNumber: json['phoneNumber'] as int,
