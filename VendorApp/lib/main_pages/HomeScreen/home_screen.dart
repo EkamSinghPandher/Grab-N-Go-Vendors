@@ -6,7 +6,6 @@ import './ScreenLayout.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 
 class HomeScreen extends StatefulWidget {
-  static Vendor user;
   static const String id = 'home_screen';
   @override
   _HomeScreenState createState() => _HomeScreenState();

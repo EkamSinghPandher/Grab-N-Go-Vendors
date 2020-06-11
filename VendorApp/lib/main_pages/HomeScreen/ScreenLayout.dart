@@ -5,32 +5,15 @@ import 'package:flutter/material.dart';
 import './ImageTitle.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 
-class HomeScreenLayout extends StatefulWidget {
-  @override
-  _HomeScreenLayoutState createState() => _HomeScreenLayoutState();
-}
-
-class _HomeScreenLayoutState extends State<HomeScreenLayout> {
-  bool isFirst = true;
-
-  @override
-  void didChangeDependencies() {
-    if (isFirst) {
-      Vendor vendor = Provider.of<Vendor>(context);
-      setState(() {
-        isFirst = false;
-      });
-    }
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
+class HomeScreenLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Vendor vendor = Provider.of<Vendor>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Column(children: [
+      body: vendor == null ? CircularProgressIndicator() : Column(children: [
         ImageTitle(
             height,
             width,
