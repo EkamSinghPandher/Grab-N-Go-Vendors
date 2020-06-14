@@ -8,7 +8,7 @@ part of 'Vendor.dart';
 
 Vendor _$VendorFromJson(Map<String, dynamic> json) {
   return Vendor(
-    loc: json['loc'],
+    loc: json['loc'] as String,
     uid: json['uid'] as String,
     menu: (json['menu'] as List)
         ?.map(

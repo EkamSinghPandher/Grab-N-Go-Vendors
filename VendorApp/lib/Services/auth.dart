@@ -30,17 +30,20 @@ class AuthService {
   }
 
   //register with email and password
-  Future registerUser(String email, String password) async{
+  Future registerUser(String email, String password, String stallName, String location) async{
     try{
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
-      await DataService(uid:user.uid).updateVendorData(Vendor(
+      Vendor newVendor = Vendor(
+            loc: location,
             uid: user.uid,
             email: user.email,
             phoneNumber: 96457651,
-            stallImage: 'images/shop-image.jpg',
-            stallName: 'New Stall',
-            menu: []));
+            stallImage: 'https://res.cloudinary.com/hkf2ycaep/image/fetch/d_project-placeholder.png,f_auto/https:/assets/project-placeholder-b90804f0a659d3f283c62d185d49635da22a5b8bbfb7e985f0d0390201f9d2b1.png',
+            stallName: stallName,
+            menu: []);
+      await DataService(uid:user.uid).updateVendorData(newVendor);
+      await DataService(uid: user.uid).updateLocationData(newVendor);
       return _userFromData(user);
     }catch(error){
       return null;

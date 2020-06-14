@@ -1,0 +1,1 @@
+List<String> locations = ["Deck", "Fine Food", "Science Canteen", "Yusof Ishak House"];

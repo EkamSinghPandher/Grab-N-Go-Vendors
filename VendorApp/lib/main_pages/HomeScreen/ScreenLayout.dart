@@ -18,12 +18,13 @@ class HomeScreenLayout extends StatelessWidget {
             height,
             width,
             vendor.stallName,
-            Image.asset(
+            Image.network(
               vendor.stallImage,
               fit: BoxFit.fill,
               color: Colors.black45,
               colorBlendMode: BlendMode.darken,
-            )),
+            ),
+            vendor.loc),
         Container(
           color: Colors.lightBlue,
           alignment: Alignment.centerLeft,

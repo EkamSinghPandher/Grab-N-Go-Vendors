@@ -1,12 +1,11 @@
 import './Food.dart';
-import 'Location.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'Vendor.g.dart';
 
 @JsonSerializable()
 class Vendor {
-  final Location loc;
+  final String loc;
   final String uid;
   final List<Food> menu;
   final String stallName;

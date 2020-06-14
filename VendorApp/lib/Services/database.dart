@@ -8,10 +8,15 @@ class DataService{
 
   //collection reference
   final CollectionReference vendorsCollection = Firestore.instance.collection('Vendors');
+  final CollectionReference locationsCollection = Firestore.instance.collection('LocationList');
 
   //uodating user data
   Future updateVendorData(Vendor vendor) async{
-      return await vendorsCollection.document(vendor.uid).setData(vendor.toJson());
+    return await vendorsCollection.document(vendor.uid).setData(vendor.toJson());
+  }
+
+  Future updateLocationData(Vendor vendor) async{
+    return await locationsCollection.document(vendor.loc).collection('Stalls').document(vendor.uid).setData(vendor.toJson());
   }
   
   //get vendor stream

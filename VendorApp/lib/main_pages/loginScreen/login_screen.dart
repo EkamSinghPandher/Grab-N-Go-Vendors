@@ -79,8 +79,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Enter Your Password',
                         ),
                       ),
-                      SizedBox(
-                        height: 24.0,
+                      Container(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: Text(
+                            errorMsg.toString(),
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ),
                       ),
                       RoundedButton(
                           title: 'Log In',
