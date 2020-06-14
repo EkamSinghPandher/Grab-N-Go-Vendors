@@ -1,16 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'food.g.dart';
+
+@JsonSerializable()
 class Food{
-  int id;
-  Image foodImage;
+  String uid;
+  String foodImage;
   String foodName;
   int foodPrice;
   int stock;
 
-  Food({String foodName, int foodPrice, Image foodImage, int stock, int id}){
-    this.id = id;
-    this.foodImage = foodImage;
-    this.foodName = foodName;
-    this.foodPrice = foodPrice;
-    this.stock = stock;
-  }
+  Food({this.uid, this.foodImage, this.foodName, this.foodPrice, this.stock});
+
+  factory Food.fromJson(Map<String, dynamic> json) =>_$FoodFromJson(json);
+  Map<String, dynamic> toJson() => _$FoodToJson(this);
 }

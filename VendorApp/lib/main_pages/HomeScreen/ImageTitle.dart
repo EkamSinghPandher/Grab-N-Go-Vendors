@@ -5,8 +5,9 @@ class ImageTitle extends StatelessWidget {
   final double width;
   final String title;
   final Image image;
+  final String location;
 
-  const ImageTitle(this.height, this.width, this.title, this.image);
+  const ImageTitle(this.height, this.width, this.title, this.image, this.location);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class ImageTitle extends StatelessWidget {
                       ),
                       Container(
                         padding: EdgeInsets.fromLTRB(16, 0, 10, 10),
-                        child: Text('FineFoods @ Utown',
+                        child: Text(location,
                             style: TextStyle(fontSize: 15, color: Colors.white)),
                       ),
                     ],

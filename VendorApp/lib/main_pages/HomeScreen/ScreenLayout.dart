@@ -1,29 +1,30 @@
+import 'package:provider/provider.dart';
+
 import './food_cards.dart';
 import 'package:flutter/material.dart';
 import './ImageTitle.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 
 class HomeScreenLayout extends StatelessWidget {
-  final Vendor vendor;
-
-  const HomeScreenLayout(this.vendor);
 
   @override
   Widget build(BuildContext context) {
+    Vendor vendor = Provider.of<Vendor>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Column(children: [
+      body: vendor == null ? CircularProgressIndicator() : Column(children: [
         ImageTitle(
             height,
             width,
             vendor.stallName,
-            Image.asset(
+            Image.network(
               vendor.stallImage,
               fit: BoxFit.fill,
               color: Colors.black45,
               colorBlendMode: BlendMode.darken,
-            )),
+            ),
+            vendor.loc),
         Container(
           color: Colors.lightBlue,
           alignment: Alignment.centerLeft,
