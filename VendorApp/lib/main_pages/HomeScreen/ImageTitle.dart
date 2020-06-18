@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ImageTitle extends StatefulWidget {
+  //Creates the Image and title stack of the vendors homepage
   final double height;
   final double width;
   final Image image;
@@ -64,8 +65,9 @@ class _ImageTitleState extends State<ImageTitle> {
                   child: FloatingActionButton(
                     child: Icon(Icons.add),
                     backgroundColor: Colors.lightBlue,
-                    onPressed: () async{
-                      return await buildShowDialog(context, foodname, foodPrice, foodStock, vendor);
+                    onPressed: () async {
+                      return await buildShowDialog(
+                          context, foodname, foodPrice, foodStock, vendor);
                     },
                   ),
                 )
@@ -79,79 +81,81 @@ class _ImageTitleState extends State<ImageTitle> {
     );
   }
 
-  buildShowDialog(BuildContext context, String foodname, int foodPrice, int foodStock, Vendor vendor) async {
+  //builds the popup for the addition of food items (needs ui improvements)
+  buildShowDialog(BuildContext context, String foodname, int foodPrice,
+      int foodStock, Vendor vendor) async {
     showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Add your food to the menu'),
-                            content: Column(children: [
-                              TextFormField(
-                                validator: (val) => val.isEmpty
-                                    ? 'Enter your Food Name'
-                                    : null,
-                                onChanged: (value) {
-                                  setState(() {
-                                    foodname = value;
-                                  });
-                                },
-                                decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Enter Your Foods Name',
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              TextFormField(
-                                keyboardType: TextInputType.numberWithOptions(),
-                                validator: (val) => val == null
-                                    ? 'Enter your Foods Price'
-                                    : null,
-                                onChanged: (value) {
-                                  setState(() {
-                                    foodPrice = (double.parse(value)*100).round();
-                                  });
-                                },
-                                decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Enter your Foods Price',
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              TextFormField(
-                                keyboardType: TextInputType.numberWithOptions(),
-                                validator: (val) => val == null
-                                    ? 'Enter your Foods Stock'
-                                    : null,
-                                onChanged: (value) {
-                                  setState(() {
-                                    foodStock = int.parse(value);
-                                  });
-                                },
-                                decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Enter your Foods Stock',
-                                ),
-                              ),
-                            ]),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text('Done'),
-                                onPressed: () async {
-                                  await DataService().updateMenu(vendor,
-                                      Food(
-                                          uid: DateTime.now().toString(),
-                                          foodImage: vendor.stallImage,
-                                          foodName: foodname,
-                                          foodPrice: foodPrice,
-                                          stock: foodStock));
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              FlatButton(
-                                child: Text('Cancel'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              )
-                            ],
-                          );
-                        });
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Add your food to the menu'),
+            content: SingleChildScrollView(
+              child: Column(children: [
+                TextFormField(
+                  validator: (val) =>
+                      val.isEmpty ? 'Enter your Food Name' : null,
+                  onChanged: (value) {
+                    setState(() {
+                      foodname = value;
+                    });
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter Your Foods Name',
+                  ),
+                ),
+                SizedBox(height: 5),
+                TextFormField(
+                  keyboardType: TextInputType.numberWithOptions(),
+                  validator: (val) =>
+                      val == null ? 'Enter your Foods Price' : null,
+                  onChanged: (value) {
+                    setState(() {
+                      foodPrice = (double.parse(value) * 100).round();
+                    });
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your Foods Price',
+                  ),
+                ),
+                SizedBox(height: 5),
+                TextFormField(
+                  keyboardType: TextInputType.numberWithOptions(),
+                  validator: (val) =>
+                      val == null ? 'Enter your Foods Stock' : null,
+                  onChanged: (value) {
+                    setState(() {
+                      foodStock = int.parse(value);
+                    });
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your Foods Stock',
+                  ),
+                ),
+              ]),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Done'),
+                onPressed: () async {
+                  await DataService().updateMenu(
+                      vendor,
+                      Food(
+                          uid: DateTime.now().toString(),
+                          foodImage: vendor.stallImage,
+                          foodName: foodname,
+                          foodPrice: foodPrice,
+                          stock: foodStock));
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 }
