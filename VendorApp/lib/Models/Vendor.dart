@@ -7,7 +7,6 @@ part 'Vendor.g.dart';
 class Vendor {
   final String loc;
   final String uid;
-  final List<Food> menu;
   final String stallName;
   final String email;
   final int phoneNumber;
@@ -16,7 +15,6 @@ class Vendor {
   Vendor(
       {this.loc,
       this.uid,
-      this.menu,
       this.stallName,
       this.email,
       this.phoneNumber,
