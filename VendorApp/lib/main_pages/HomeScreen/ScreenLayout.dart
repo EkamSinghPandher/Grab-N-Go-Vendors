@@ -1,4 +1,5 @@
 import 'package:VendorApp/Models/Food.dart';
+import 'package:VendorApp/main_pages/HomeScreen/ImageCapture.dart';
 import 'package:provider/provider.dart';
 
 import './food_cards.dart';
@@ -9,7 +10,7 @@ import 'package:VendorApp/Models/Vendor.dart';
 class HomeScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Food> menu =  Provider.of<List<Food>>(context);
+    List<Food> menu = Provider.of<List<Food>>(context);
     Vendor vendor = Provider.of<Vendor>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -36,7 +37,7 @@ class HomeScreenLayout extends StatelessWidget {
                 ),
                 padding: EdgeInsets.fromLTRB(13, 12, 0, 8),
               ),
-              FoodCard(height, menu == null ? [] : menu)
+              FoodCard(height, menu == null ? [] : menu),
             ]),
     );
   }

@@ -2,6 +2,7 @@ import 'package:VendorApp/Models/Food.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/components/constants.dart';
+import 'package:VendorApp/main_pages/HomeScreen/ImageCapture.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -117,6 +118,19 @@ class _FoodTileState extends State<FoodTile> {
                   decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your Foods Stock',
                   ),
+                ),
+                SizedBox(height: 5),
+                FlatButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                        builder: (context) => ImageCapture(),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.image),
+                  label: Text('Edit Image'),
                 ),
               ]),
             ),
