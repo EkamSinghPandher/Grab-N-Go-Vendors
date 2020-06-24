@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:VendorApp/Models/Vendor.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Uploader extends StatefulWidget {
   final File file;
@@ -13,17 +15,28 @@ class Uploader extends StatefulWidget {
 }
 
 class _UploaderState extends State<Uploader> {
+  String downloadURL;
   final FirebaseStorage storage =
       FirebaseStorage(storageBucket: 'gs://grab-n--go.appspot.com/');
 
   StorageUploadTask uploadTask;
+  StorageReference reference =
+      FirebaseStorage.instance.ref().child('images/food.png');
 
   void startUpload() {
-    String filepath = 'images/${DateTime.now()}.png';
+    String filepath = 'images/food.png'; //'images/${DateTime.now()}.png';
 
     setState(() {
       uploadTask = storage.ref().child(filepath).putFile(widget.file);
     });
+  }
+
+  Future downloadImage() async {
+    String downloadAddress = await reference.getDownloadURL();
+    setState(() {
+      downloadURL = downloadAddress;
+    });
+    print(downloadURL);
   }
 
   @override
@@ -52,6 +65,17 @@ class _UploaderState extends State<Uploader> {
                 value: progressPercent,
               ),
               Text('${(progressPercent * 100).toStringAsFixed(2)}'),
+              SizedBox(
+                height: 20.0,
+              ),
+              if (uploadTask.isComplete)
+                FlatButton(
+                  onPressed: () {
+                    downloadImage();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("back"),
+                ),
             ],
           );
         },

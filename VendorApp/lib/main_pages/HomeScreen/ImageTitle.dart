@@ -3,6 +3,7 @@ import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/components/constants.dart';
 import 'package:VendorApp/main_pages/HomeScreen/ImageCapture.dart';
+import 'package:VendorApp/main_pages/HomeScreen/uploader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
