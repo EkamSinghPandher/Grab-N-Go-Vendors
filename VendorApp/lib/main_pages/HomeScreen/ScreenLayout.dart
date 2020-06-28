@@ -16,28 +16,30 @@ class HomeScreenLayout extends StatelessWidget {
     return Scaffold(
       body: vendor == null
           ? CircularProgressIndicator()
-          : Column(children: [
-              ImageTitle(
-                height,
-                width,
-                Image.network(
-                  vendor.stallImage,
-                  fit: BoxFit.fill,
-                  color: Colors.black45,
-                  colorBlendMode: BlendMode.darken,
+          : SingleChildScrollView(
+                      child: Column(children: [
+                ImageTitle(
+                  height,
+                  width,
+                  Image.network(
+                    vendor.stallImage,
+                    fit: BoxFit.fill,
+                    color: Colors.black45,
+                    colorBlendMode: BlendMode.darken,
+                  ),
                 ),
-              ),
-              Container(
-                color: Colors.lightBlue,
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Menu',
-                  style: TextStyle(fontSize: 18),
+                Container(
+                  color: Colors.lightBlue,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Menu',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  padding: EdgeInsets.fromLTRB(13, 12, 0, 8),
                 ),
-                padding: EdgeInsets.fromLTRB(13, 12, 0, 8),
-              ),
-              FoodCard(height, menu == null ? [] : menu)
-            ]),
+                FoodCard(height, menu == null ? [] : menu)
+              ]),
+          ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:VendorApp/Models/Food.dart';
+import 'package:VendorApp/Models/Order.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class DataService{
@@ -10,6 +11,7 @@ class DataService{
   //collection references
   final CollectionReference vendorsCollection = Firestore.instance.collection('Vendors');
   final CollectionReference locationsCollection = Firestore.instance.collection('LocationList');
+  final CollectionReference studentsCollection = Firestore.instance.collection('Students');
 
   //updating vendor data
   Future updateVendorData(Vendor vendor) async{
@@ -25,6 +27,16 @@ class DataService{
   Future updateMenu(Vendor  vendor, Food food) async{
     await vendorsCollection.document(vendor.uid).collection('Menu').document(food.uid).setData(food.toJson());
     return locationsCollection.document(vendor.loc).collection('Stalls').document(vendor.uid).collection('Menu').document(food.uid).setData(food.toJson());
+  }
+
+  //Order is done
+  Future doneOrder(Order order)async {
+    await vendorsCollection.document(uid).collection('Orders').document(order.orderID).setData(order.toJson());
+  }
+
+  //Order is collected
+  Future collectedOrder(Order order) async{
+    await vendorsCollection.document(uid).collection('Orders').document(order.orderID).delete();
   }
   
   //get vendor stream
@@ -47,5 +59,14 @@ class DataService{
   //list of food from sanpshot
   List<Food> menuFromSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((e) => Food.fromJson(e.data)).toList();
+  }
+
+  //get orders for this vendor
+  Stream<List<Order>> get myOrders{
+    return vendorsCollection.document(uid).collection('Orders').snapshots().map(ordersFromSnapshot);
+  }
+
+  List<Order> ordersFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.documents.map((e) => Order.fromJson(e.data)).toList();
   }
 }

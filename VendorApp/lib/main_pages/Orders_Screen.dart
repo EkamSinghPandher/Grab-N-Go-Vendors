@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ShopScreen extends StatefulWidget {
+class OrderScreen extends StatefulWidget {
   @override
-  _ShopScreenState createState() => _ShopScreenState();
+  _OrderScreenState createState() => _OrderScreenState();
 }
 
-class _ShopScreenState extends State<ShopScreen> {
+class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,12 +18,12 @@ class _ShopScreenState extends State<ShopScreen> {
                 //Implement logout functionality
               }),
         ],
-        title: Text('Shop'),
+        title: Text('Orders'),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
         child: Center(
-          child: Text('This is Shop Page'),
+          child: Text('This is pending Orders Page'),
         ),
       ),
     );

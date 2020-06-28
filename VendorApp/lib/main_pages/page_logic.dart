@@ -1,9 +1,9 @@
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/database.dart';
-import 'package:VendorApp/main_pages/history_screen.dart';
 import 'package:VendorApp/main_pages/HomeScreen/home_screen.dart';
+import 'package:VendorApp/main_pages/CollectionScreen/CollectionScreen.dart';
+import 'package:VendorApp/main_pages/Orders_Screen.dart';
 import 'package:VendorApp/main_pages/ProfileScreen/profile_screen.dart';
-import 'package:VendorApp/main_pages/shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,8 +17,8 @@ class _PageLogicState extends State<PageLogic> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomeScreen(),
-    ShopScreen(),
-    HistoryScreen(),
+    OrderScreen(),
+    CollectionScreen(),
     ProfileScreen(),
   ];
 
@@ -37,12 +37,12 @@ class _PageLogicState extends State<PageLogic> {
               title: Text('Home'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket),
+              icon: Icon(Icons.assignment),
               title: Text('Orders'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.speaker_notes),
-              title: Text('Chat'),
+              icon: Icon(Icons.shopping_basket),
+              title: Text('Collection'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
