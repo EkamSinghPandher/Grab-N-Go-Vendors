@@ -9,7 +9,7 @@ import 'package:VendorApp/Models/Vendor.dart';
 class HomeScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Food> menu =  Provider.of<List<Food>>(context);
+    List<Food> menu = Provider.of<List<Food>>(context);
     Vendor vendor = Provider.of<Vendor>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -17,7 +17,7 @@ class HomeScreenLayout extends StatelessWidget {
       body: vendor == null
           ? CircularProgressIndicator()
           : SingleChildScrollView(
-                      child: Column(children: [
+              child: Column(children: [
                 ImageTitle(
                   height,
                   width,
@@ -39,7 +39,7 @@ class HomeScreenLayout extends StatelessWidget {
                 ),
                 FoodCard(height, menu == null ? [] : menu)
               ]),
-          ),
+            ),
     );
   }
 }

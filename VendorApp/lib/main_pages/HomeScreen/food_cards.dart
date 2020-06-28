@@ -11,7 +11,7 @@ class FoodCard extends StatelessWidget {
   Widget build(BuildContext context) {
     List<FoodTile> tiles = menu.map((food) => FoodTile(food, height)).toList();
     return Container(
-      height: height * 0.528,
+      height: height * 0.4,
       child: ListView.builder(
         itemBuilder: (ctx, index) {
           return tiles[index];
