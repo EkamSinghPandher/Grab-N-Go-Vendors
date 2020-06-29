@@ -1,3 +1,4 @@
+import 'package:VendorApp/Models/User.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/main_pages/HomeScreen/home_screen.dart';
@@ -25,37 +26,40 @@ class _PageLogicState extends State<PageLogic> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<Vendor>(
-      create: (_) => DataService().vendors,
+        create: (_) => DataService().vendors,
+        child: StreamProvider<Vendor>(
+          create: (_) =>
+              DataService(uid: Provider.of<User>(context).uid).vendors,
           child: Scaffold(
-        body: _children[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
+            body: _children[_currentIndex],
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _currentIndex,
+              type: BottomNavigationBarType.fixed,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  title: Text('Home'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.assignment),
+                  title: Text('Orders'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_basket),
+                  title: Text('Collection'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  title: Text('Profile'),
+                ),
+              ],
+              onTap: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.assignment),
-              title: Text('Orders'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket),
-              title: Text('Collection'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile'),
-            ),
-          ],
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

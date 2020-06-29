@@ -1,27 +1,32 @@
 import 'dart:io';
+import 'package:VendorApp/Models/Vendor.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class Uploader extends StatefulWidget {
   final File file;
+  final Vendor vendor;
+  final String foodID;
 
-  Uploader({Key key, this.file}) : super(key: key);
+  Uploader({Key key, this.file, this.vendor, this.foodID}) : super(key: key);
 
   @override
   _UploaderState createState() => _UploaderState();
 }
 
 class _UploaderState extends State<Uploader> {
+  String filepath = '';
   String downloadURL;
+
   final FirebaseStorage storage =
       FirebaseStorage(storageBucket: 'gs://grab-n--go.appspot.com/');
 
   StorageUploadTask uploadTask;
-  StorageReference reference =
-      FirebaseStorage.instance.ref().child('images/food.png');
 
   void startUpload() {
-    String filepath = 'images/food.png'; //'images/${DateTime.now()}.png';
+    setState(() {
+      filepath = 'images/${widget.vendor.uid}/${widget.foodID}.png';
+    });
 
     setState(() {
       uploadTask = storage.ref().child(filepath).putFile(widget.file);
@@ -29,11 +34,11 @@ class _UploaderState extends State<Uploader> {
   }
 
   Future downloadImage() async {
+    StorageReference reference = FirebaseStorage.instance.ref().child(filepath);
     String downloadAddress = await reference.getDownloadURL();
     setState(() {
       downloadURL = downloadAddress;
     });
-    print(downloadURL);
   }
 
   @override
@@ -67,9 +72,9 @@ class _UploaderState extends State<Uploader> {
               ),
               if (uploadTask.isComplete)
                 FlatButton(
-                  onPressed: () {
-                    downloadImage();
-                    Navigator.of(context).pop();
+                  onPressed: () async {
+                    await downloadImage();
+                    Navigator.pop(context, downloadURL);
                   },
                   child: Text("back"),
                 ),
@@ -79,7 +84,9 @@ class _UploaderState extends State<Uploader> {
       );
     } else {
       return FlatButton.icon(
-        onPressed: startUpload,
+        onPressed: () {
+          startUpload();
+        },
         icon: Icon(Icons.cloud_upload),
         label: Text('Upload'),
       );

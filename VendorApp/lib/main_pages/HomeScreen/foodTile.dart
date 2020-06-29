@@ -43,7 +43,8 @@ class _FoodTileState extends State<FoodTile> {
                         widget.food.foodPrice,
                         widget.food.stock,
                         vendor,
-                        widget.food.uid);
+                        widget.food.uid,
+                        widget.food.foodImage);
                   },
                 ),
                 leading: Container(
@@ -53,10 +54,15 @@ class _FoodTileState extends State<FoodTile> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
+                        height: 50,
+                        width: 80,
                         padding: EdgeInsets.all(3),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(4),
-                          child: Image.network(widget.food.foodImage),
+                          child: Image.network(
+                            widget.food.foodImage,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                       Text(widget.food.foodName),
@@ -68,7 +74,7 @@ class _FoodTileState extends State<FoodTile> {
   }
 
   buildShowDialog(BuildContext context, String foodname, int foodPrice,
-      int foodStock, Vendor vendor, String uid) async {
+      int foodStock, Vendor vendor, String uid, String foodImage) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -121,12 +127,17 @@ class _FoodTileState extends State<FoodTile> {
               SizedBox(height: 5),
               FlatButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                      builder: (context) => ImageCapture(),
-                    ),
-                  );
+                  setState(() async {
+                    foodImage = await Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                        builder: (context) => ImageCapture(
+                          vendor: vendor,
+                          foodID: uid,
+                        ),
+                      ),
+                    );
+                  });
                 },
                 icon: Icon(Icons.image),
                 label: Text('Edit Image'),
@@ -141,7 +152,7 @@ class _FoodTileState extends State<FoodTile> {
                     vendor,
                     Food(
                         uid: uid,
-                        foodImage: vendor.stallImage,
+                        foodImage: foodImage,
                         foodName: foodname,
                         foodPrice: foodPrice,
                         stock: foodStock));

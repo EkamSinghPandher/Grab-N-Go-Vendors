@@ -1,11 +1,18 @@
 import 'dart:io';
 
+import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/main_pages/HomeScreen/uploader.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:provider/provider.dart';
 
 class ImageCapture extends StatefulWidget {
+  final Vendor vendor;
+  final String foodID;
+
+  ImageCapture({this.vendor, this.foodID});
+
   @override
   _ImageCaptureState createState() => _ImageCaptureState();
 }
@@ -66,7 +73,11 @@ class _ImageCaptureState extends State<ImageCapture> {
                 )
               ],
             ),
-            Uploader(file: _imageFile),
+            Uploader(
+              file: _imageFile,
+              vendor: widget.vendor,
+              foodID: widget.foodID,
+            ),
           ],
         ],
       ),

@@ -16,13 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<User>(context);
-    return StreamProvider<Vendor>(
-      create: (_) => DataService(uid: user.uid).vendors,
-      child: StreamProvider<List<Food>>(
-        create: (_) => DataService(uid: user.uid).menuFromVendor(),
-        child: Scaffold(
-          body: Container(child: HomeScreenLayout()),
-        ),
+    return StreamProvider<List<Food>>(
+      create: (_) => DataService(uid: user.uid).menuFromVendor(),
+      child: Scaffold(
+        body: Container(child: HomeScreenLayout()),
       ),
     );
   }
