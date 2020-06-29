@@ -1,3 +1,4 @@
+import 'package:VendorApp/main_pages/OrdersScreen/OrderList.dart';
 import 'package:VendorApp/main_pages/topBar.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +12,9 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: topBar(context, null),
-      body: SafeArea(
-        child: Center(
-          child: Text('This is pending Orders Page'),
+      body: Container(
+        child: Column(
+          children: [Text('Orders pending'), OrderList()],
         ),
       ),
     );

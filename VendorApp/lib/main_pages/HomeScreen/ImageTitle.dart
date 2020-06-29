@@ -3,7 +3,6 @@ import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/components/constants.dart';
 import 'package:VendorApp/main_pages/HomeScreen/ImageCapture.dart';
-import 'package:VendorApp/main_pages/HomeScreen/uploader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +23,9 @@ class _ImageTitleState extends State<ImageTitle> {
   Widget build(BuildContext context) {
     final Vendor vendor = Provider.of<Vendor>(context);
     String foodname = '';
+    // ignore: avoid_init_to_null
     int foodPrice = null;
+    // ignore: avoid_init_to_null
     int foodStock = null;
     return vendor == null
         ? CircularProgressIndicator()

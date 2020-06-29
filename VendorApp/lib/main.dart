@@ -1,7 +1,5 @@
 import 'package:VendorApp/Models/User.dart';
-import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/auth.dart';
-import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/main_pages/loginScreen/Wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/main_pages/loginScreen/welcome_screen.dart';

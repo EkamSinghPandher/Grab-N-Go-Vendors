@@ -4,7 +4,6 @@ import 'package:VendorApp/Services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './ScreenLayout.dart';
-import 'package:VendorApp/Models/Vendor.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';

@@ -5,7 +5,6 @@ import 'package:VendorApp/main_pages/HomeScreen/uploader.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:provider/provider.dart';
 
 class ImageCapture extends StatefulWidget {
   final Vendor vendor;
@@ -18,10 +17,10 @@ class ImageCapture extends StatefulWidget {
 }
 
 class _ImageCaptureState extends State<ImageCapture> {
-  File _imageFile;
+  PickedFile _imageFile;
 
   Future<void> pickImage(ImageSource source) async {
-    File selected = await ImagePicker.pickImage(source: source);
+    PickedFile selected = await ImagePicker().getImage(source: source);
     setState(() {
       _imageFile = selected;
     });
@@ -60,7 +59,7 @@ class _ImageCaptureState extends State<ImageCapture> {
       body: ListView(
         children: [
           if (_imageFile != null) ...[
-            Image.file(_imageFile),
+            Image.file(File(_imageFile.path)),
             Row(
               children: [
                 FlatButton(
@@ -74,7 +73,7 @@ class _ImageCaptureState extends State<ImageCapture> {
               ],
             ),
             Uploader(
-              file: _imageFile,
+              file: File(_imageFile.path),
               vendor: widget.vendor,
               foodID: widget.foodID,
             ),

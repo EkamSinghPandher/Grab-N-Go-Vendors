@@ -97,6 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 isLoading = true;
                               });
+                              // ignore: unused_local_variable
                               dynamic result = _auth
                                   .signInUser(email, password)
                                   .then((result) {
