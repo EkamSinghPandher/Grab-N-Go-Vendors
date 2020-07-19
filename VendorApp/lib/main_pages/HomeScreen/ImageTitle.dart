@@ -53,13 +53,17 @@ class _ImageTitleState extends State<ImageTitle> {
                                   style: TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.bold,
+                                      fontFamily: "Montserrat",
                                       color: Colors.white)),
                             ),
                             Container(
                               padding: EdgeInsets.fromLTRB(16, 0, 10, 10),
                               child: Text(vendor.loc,
                                   style: TextStyle(
-                                      fontSize: 15, color: Colors.white)),
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontFamily: "Montserrat",
+                                  )),
                             ),
                           ],
                         ),
