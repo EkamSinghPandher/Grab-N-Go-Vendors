@@ -1,4 +1,5 @@
 import 'package:VendorApp/Models/Food.dart';
+import 'package:VendorApp/Models/Message.dart';
 import 'package:VendorApp/Models/Order.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -55,25 +56,55 @@ class DataService {
         .collection('Orders')
         .document(order.orderID)
         .setData(order.doneOrder().toJson());
-    await studentsCollection
+    studentsCollection
         .document(order.studentUID)
         .collection('Orders')
         .document(order.orderID)
         .setData(order.doneOrder().toJson());
+    sendMessage(
+        order,
+        Message(
+            sendorID: order.vendorUID,
+            vendorID: order.vendorUID,
+            studentID: order.studentUID,
+            text: "Your order is ready for collection",
+            time: DateTime.now()));
   }
 
   //Order is collected
   Future collectedOrder(Order order) async {
-    await vendorsCollection
-        .document(order.vendorUID)
+    studentsCollection
+        .document(order.studentUID)
         .collection('Orders')
         .document(order.orderID)
-        .delete();
+        .collection('Messages')
+        .getDocuments()
+        .then((value) {
+      for (DocumentSnapshot doc in value.documents) {
+        doc.reference.delete();
+      }
+    });
     studentsCollection
         .document(order.studentUID)
         .collection('Orders')
         .document(order.orderID)
         .setData(order.collectedOrder().toJson());
+    await vendorsCollection
+        .document(order.vendorUID)
+        .collection('Orders')
+        .document(order.orderID)
+        .collection('Messages')
+        .getDocuments()
+        .then((value) {
+      for (DocumentSnapshot doc in value.documents) {
+        doc.reference.delete();
+      }
+    });
+    await vendorsCollection
+        .document(order.vendorUID)
+        .collection('Orders')
+        .document(order.orderID)
+        .delete();
   }
 
   //get vendor stream
@@ -116,5 +147,39 @@ class DataService {
 
   List<Order> ordersFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((e) => Order.fromJson(e.data)).toList();
+  }
+
+  //Get Stream of messages from an order
+  Stream<List<Message>> messagesFromOrder(Order order) {
+    return vendorsCollection
+        .document(uid)
+        .collection('Orders')
+        .document(order.orderID)
+        .collection("Messages")
+        .snapshots()
+        .map(messagesFromSnapshot);
+  }
+
+  //get a list of messages from a snapshot
+  List<Message> messagesFromSnapshot(QuerySnapshot snaphsot) {
+    return snaphsot.documents.map((e) => Message.fromJson(e.data)).toList();
+  }
+
+  //send message
+  Future sendMessage(Order order, Message message) async {
+    await vendorsCollection
+        .document(order.vendorUID)
+        .collection('Orders')
+        .document(order.orderID)
+        .collection("Messages")
+        .document(message.time.toIso8601String())
+        .setData(message.toJson());
+    studentsCollection
+        .document(order.studentUID)
+        .collection('Orders')
+        .document(order.orderID)
+        .collection("Messages")
+        .document(message.time.toIso8601String())
+        .setData(message.toJson());
   }
 }

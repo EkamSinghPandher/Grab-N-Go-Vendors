@@ -19,7 +19,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     Vendor vendor = Provider.of<Vendor>(context);
     String stallImage = vendor == null ? 'nothing' : vendor.stallImage;
-    print(stallImage);
     return Scaffold(
       appBar: topBar(context, null),
       body: Center(

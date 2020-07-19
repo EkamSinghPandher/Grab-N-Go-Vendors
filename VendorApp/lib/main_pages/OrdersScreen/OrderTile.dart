@@ -11,6 +11,7 @@ class OrderTile extends StatelessWidget {
     return ListTile(
       title: Text(order.orderID.toString()),
       subtitle: Text(order.dateTime.toIso8601String()),
+      onTap: () {},
       trailing: IconButton(
           icon: Icon(Icons.check_box),
           onPressed: () {
