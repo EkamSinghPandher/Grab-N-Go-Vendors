@@ -1,5 +1,7 @@
 import 'package:VendorApp/Data/dummy_data.dart';
 import 'package:VendorApp/Services/auth.dart';
+import 'package:VendorApp/main_pages/loginScreen/TextInput.dart';
+import 'package:VendorApp/main_pages/loginScreen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/components/roundedButton.dart';
 import 'package:VendorApp/components/constants.dart';
@@ -24,127 +26,191 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String dropdownvalue = "Deck";
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: isLoading
-          ? Center(
-              child: Container(
-                  height: 400,
-                  width: 200,
-                  child: Dialog(
-                    child: CircularProgressIndicator(),
-                  )))
-          : SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+        backgroundColor: Colors.white,
+        body: isLoading
+            ? Center(
+                child: Container(
+                    height: 400,
+                    width: 200,
+                    child: Dialog(
+                      child: CircularProgressIndicator(),
+                    )))
+            : SingleChildScrollView(
                 child: Form(
                   key: formKey,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Hero(
-                        tag: 'logo',
-                        child: Container(
-                          height: 200.0,
-                          child: Image.asset('images/logo.png'),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 48.0,
-                      ),
-                      TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter your email' : null,
-                        onChanged: (value) {
-                          setState(() {
-                            email = value;
-                          });
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Enter Your Email',
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter your Stall Name' : null,
-                        onChanged: (value) {
-                          setState(() {
-                            stallName = value;
-                          });
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Enter Your Stall Name',
-                        ),
-                      ),
-                      SizedBox(height: 8.0),
-                      TextFormField(
-                        validator: (val) => (val.length < 8)
-                            ? 'Password must be at least 8 character long'
-                            : null,
-                        obscureText: true,
-                        onChanged: (value) {
-                          setState(() {
-                            password = value;
-                          });
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Enter Your Password',
-                        ),
-                      ),
-                      DropdownButton<String>(
-                        value: dropdownvalue,
-                        items: locations.map<DropdownMenuItem<String>>((e) => DropdownMenuItem<String>(child: Text(e), value: e,)).toList(),
-                        onChanged: (String newValue){
-                          setState(() {
-                            dropdownvalue = newValue;
-                          });
-                        },
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          child: Text(
-                            errorMsg.toString(),
-                            style: TextStyle(color: Colors.red, fontSize: 14),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Container(
+                          height: height * 0.25,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Grab N' Go",
+                                style: TextStyle(
+                                    fontSize: 34,
+                                    color: Color.fromRGBO(48, 47, 86, 100)),
+                              ),
+                              Text("Vendors",
+                                  style: TextStyle(
+                                      fontSize: 28, fontFamily: "Montserrat"))
+                            ],
                           ),
                         ),
-                      ),
-                      RoundedButton(
-                        title: 'Register',
-                        color: Colors.blueAccent,
-                        onPressed: () async {
-                          if (formKey.currentState.validate()) {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            dynamic result = await _auth.registerUser(
-                                email, password, stallName,dropdownvalue);
-                            if (result == null) {
-                              setState(() {
-                                isLoading = false;
-                                errorMsg =
-                                    'Please enter a unused or valid email or password';
-                              });
-                            } else {
-                              setState(() {
-                                isLoading = false;
-                              });
-                              Navigator.of(context)
-                                  .pushReplacementNamed(Wrapper.id);
-                            }
-                          }
-                        },
-                      ),
-                    ],
-                  ),
+                        Container(
+                            padding: EdgeInsets.symmetric(horizontal: 24),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(164, 200, 242, 100),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(40),
+                                  topRight: Radius.circular(40),
+                                )),
+                            height: height * 0.75,
+                            child: Column(children: [
+                              SizedBox(
+                                height: 48,
+                              ),
+                              TextInput(
+                                field: TextFormField(
+                                  onChanged: (value) {
+                                    setState(() {
+                                      email = value;
+                                    });
+                                  },
+                                  decoration: kTextFieldDecoration.copyWith(
+                                    hintText: 'Enter Your Email',
+                                  ),
+                                ),
+                                icon: Icon(
+                                  Icons.mail_outline,
+                                  size: 30,
+                                ),
+                                height: height,
+                                width: width,
+                              ),
+                              SizedBox(
+                                height: 15.0,
+                              ),
+                              TextInput(
+                                field: TextFormField(
+                                  onChanged: (value) {
+                                    setState(() {
+                                      stallName = value;
+                                    });
+                                  },
+                                  decoration: kTextFieldDecoration.copyWith(
+                                    hintText: 'Enter Your Stall Name',
+                                  ),
+                                ),
+                                icon: Icon(
+                                  Icons.home,
+                                  size: 30,
+                                ),
+                                height: height,
+                                width: width,
+                              ),
+                              SizedBox(height: 15),
+                              TextInput(
+                                field: TextFormField(
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      password = value;
+                                    });
+                                  },
+                                  decoration: kTextFieldDecoration.copyWith(
+                                    hintText: 'Enter Your Password',
+                                  ),
+                                ),
+                                icon: Icon(
+                                  Icons.lock_outline,
+                                  size: 30,
+                                ),
+                                height: height,
+                                width: width,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Container(
+                                width: width * 0.9,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Row(children: [
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Icon(
+                                    Icons.location_on,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  DropdownButton<String>(
+                                    value: dropdownvalue,
+                                    items: locations
+                                        .map<DropdownMenuItem<String>>(
+                                            (e) => DropdownMenuItem<String>(
+                                                  child: Text(e),
+                                                  value: e,
+                                                ))
+                                        .toList(),
+                                    onChanged: (String newValue) {
+                                      setState(() {
+                                        dropdownvalue = newValue;
+                                      });
+                                    },
+                                  ),
+                                ]),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                  child: Text(
+                                    errorMsg.toString(),
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 14),
+                                  ),
+                                ),
+                              ),
+                              RoundedButton(
+                                color: Color.fromRGBO(51, 31, 121, 64.86),
+                                title: 'Register',
+                                onPressed: () async {
+                                  setState(() {
+                                    isLoading = true;
+                                  });
+                                  dynamic result = await _auth.registerUser(
+                                      email,
+                                      password,
+                                      stallName,
+                                      dropdownvalue);
+                                  if (result == null) {
+                                    setState(() {
+                                      isLoading = false;
+                                      errorMsg =
+                                          'Please enter a valid email or password';
+                                    });
+                                  } else {
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    Navigator.of(context)
+                                        .pushReplacementNamed(LoginScreen.id);
+                                  }
+                                },
+                              ),
+                            ]))
+                      ]),
                 ),
-              ),
-            ),
-    );
+              ));
   }
 }

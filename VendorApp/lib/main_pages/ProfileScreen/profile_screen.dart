@@ -53,7 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           loc: vendor.loc,
                           uid: vendor.uid,
                           stallName: vendor.stallName,
-                          stallImage: stallImage,
+                          stallImage: stallImage == null
+                              ? vendor.stallImage
+                              : stallImage,
                           email: vendor.email,
                           phoneNumber: vendor.phoneNumber,
                         ));
@@ -61,7 +63,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           loc: vendor.loc,
                           uid: vendor.uid,
                           stallName: vendor.stallName,
-                          stallImage: stallImage,
+                          stallImage: stallImage == null
+                              ? vendor.stallImage
+                              : stallImage,
                           email: vendor.email,
                           phoneNumber: vendor.phoneNumber,
                         ));
