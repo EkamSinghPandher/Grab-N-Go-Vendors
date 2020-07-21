@@ -22,7 +22,7 @@ class _TextInputState extends State<TextInput> {
       width: widget.width * 0.9,
       child: Row(children: [
         SizedBox(
-          width: 20,
+          width: widget.width * 0.05,
         ),
         widget.icon,
         Container(width: widget.width * 0.75, child: widget.field),

@@ -1,7 +1,6 @@
 import 'package:VendorApp/Data/dummy_data.dart';
 import 'package:VendorApp/Services/auth.dart';
 import 'package:VendorApp/main_pages/loginScreen/TextInput.dart';
-import 'package:VendorApp/main_pages/loginScreen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/components/roundedButton.dart';
 import 'package:VendorApp/components/constants.dart';
@@ -204,7 +203,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                       isLoading = false;
                                     });
                                     Navigator.of(context)
-                                        .pushReplacementNamed(LoginScreen.id);
+                                        .pushReplacementNamed(Wrapper.id);
                                   }
                                 },
                               ),
