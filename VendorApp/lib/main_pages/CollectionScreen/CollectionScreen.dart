@@ -10,11 +10,36 @@ class CollectionScreen extends StatefulWidget {
 class _CollectionScreenState extends State<CollectionScreen> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: topBar(context, null),
       body: Container(
-        child: Column(
-          children: [Text('Orders Waiting to be collected'), CollectionList()],
+        height: height,
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 45, 0, 10),
+                child: FittedBox(
+                  child: Text(
+                    'Collections pending',
+                    style: TextStyle(
+                      color: Colors.blue.shade800,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  fit: BoxFit.fitHeight,
+                ),
+                height: height * 0.05,
+              ),
+              CollectionList(
+                width: width,
+                height: height * 0.79,
+              )
+            ],
+          ),
         ),
       ),
     );

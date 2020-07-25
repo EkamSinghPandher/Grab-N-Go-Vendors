@@ -8,18 +8,18 @@ part of 'Order.dart';
 
 Order _$OrderFromJson(Map<String, dynamic> json) {
   return Order(
-    vendorUID: json['vendorUID'] as String,
-    studentUID: json['studentUID'] as String,
-    dateTime: json['dateTime'] == null
-        ? null
-        : DateTime.parse(json['dateTime'] as String),
-    foodName: json['foodName'] as String,
-    orderID: json['orderID'] as String,
-    foodPrice: json['foodPrice'] as int,
-    quantity: json['quantity'] as int,
-    isDone: json['isDone'] as bool,
-    isCollected: json['isCollected'] as bool,
-  );
+      vendorUID: json['vendorUID'] as String,
+      studentUID: json['studentUID'] as String,
+      dateTime: json['dateTime'] == null
+          ? null
+          : DateTime.parse(json['dateTime'] as String),
+      foodName: json['foodName'] as String,
+      orderID: json['orderID'] as String,
+      foodPrice: json['foodPrice'] as int,
+      quantity: json['quantity'] as int,
+      isDone: json['isDone'] as bool,
+      isCollected: json['isCollected'] as bool,
+      orderImage: json['orderImage'] as String);
 }
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -32,4 +32,5 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'quantity': instance.quantity,
       'isDone': instance.isDone,
       'isCollected': instance.isCollected,
+      'orderImage': instance.orderImage
     };

@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CollectionList extends StatefulWidget {
+  final double height;
+  final double width;
+
+  const CollectionList({Key key, this.height, this.width}) : super(key: key);
   @override
   _CollectionListState createState() => _CollectionListState();
 }
@@ -16,10 +20,15 @@ class _CollectionListState extends State<CollectionList> {
         ? []
         : orderList.where((element) => element.isDone == true).toList();
     sorter.sort((a, b) => a.dateTime.compareTo(b.dateTime));
-    List<CollectionTile> tiles =
-        sorter.map((e) => CollectionTile(order: e)).toList();
+    List<CollectionTile> tiles = sorter
+        .map((e) => CollectionTile(
+              order: e,
+              height: widget.height * 0.28,
+              width: widget.width,
+            ))
+        .toList();
     return Container(
-        height: 400,
+        height: widget.height,
         child: ListView.builder(
           itemBuilder: (ctx, index) {
             return tiles[index];

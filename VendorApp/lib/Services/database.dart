@@ -182,4 +182,20 @@ class DataService {
         .document(message.time.toIso8601String())
         .setData(message.toJson());
   }
+
+  //Vendor delete food
+  Future deleteFood(Food food, Vendor vendor) async {
+    await vendorsCollection
+        .document(vendor.uid)
+        .collection('Menu')
+        .document(food.uid)
+        .delete();
+    locationsCollection
+        .document(vendor.loc)
+        .collection('Stalls')
+        .document(vendor.uid)
+        .collection('Menu')
+        .document(food.uid)
+        .delete();
+  }
 }

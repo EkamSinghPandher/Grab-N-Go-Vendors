@@ -4,14 +4,16 @@ import './foodTile.dart';
 
 class FoodCard extends StatelessWidget {
   final double height;
+  final double width;
   final List<Food> menu;
-  const FoodCard(this.height, this.menu);
+  const FoodCard(this.height, this.menu, this.width);
 
   @override
   Widget build(BuildContext context) {
-    List<FoodTile> tiles = menu.map((food) => FoodTile(food, height)).toList();
+    List<FoodTile> tiles =
+        menu.map((food) => FoodTile(food, height * 0.3, width)).toList();
     return Container(
-      height: height * 0.4,
+      height: height,
       child: ListView.builder(
         itemBuilder: (ctx, index) {
           return tiles[index];

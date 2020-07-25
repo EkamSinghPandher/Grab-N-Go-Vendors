@@ -12,7 +12,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
       studentID: json['studentID'] as String,
       vendorID: json['vendorID'] as String,
       sendorID: json['sendorID'] as String,
-      time: json['time'] as DateTime);
+      time: json['time'].toDate() as DateTime);
 }
 
 Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{

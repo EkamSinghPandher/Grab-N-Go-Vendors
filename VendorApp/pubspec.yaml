@@ -45,11 +45,17 @@ flutter:
     - images/logo.png
     - images/shop-image.jpg
     - images/xlbfood.png
+    - fonts/
 
   fonts:
     - family: Montserrat
       fonts:
         - asset: fonts/Montserrat-Light.ttf
+          weight: 300 
+        - asset: fonts/Montserrat-Medium.ttf
+          weight: 500 
+        - asset: fonts/Montserrat-Regular.ttf
+          weight: 400
 
 
   # The following line ensures that the Material Icons font is

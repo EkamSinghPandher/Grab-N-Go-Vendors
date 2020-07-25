@@ -8,9 +8,10 @@ import 'package:provider/provider.dart';
 
 class FoodTile extends StatefulWidget {
   final Food food;
+  final double width;
   final double height;
 
-  const FoodTile(this.food, this.height);
+  const FoodTile(this.food, this.height, this.width);
 
   @override
   _FoodTileState createState() => _FoodTileState();
@@ -20,57 +21,97 @@ class _FoodTileState extends State<FoodTile> {
   @override
   Widget build(BuildContext context) {
     Vendor vendor = Provider.of<Vendor>(context);
-    return Card(
-        color: Colors.blue[100],
-        borderOnForeground: true,
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        margin: EdgeInsets.fromLTRB(10, 5, 13, 7),
-        child: Container(
-            height: widget.height * 0.1,
-            width: 300,
-            alignment: Alignment.centerLeft,
-            child: ListTile(
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.edit,
-                    color: Colors.blueGrey,
+    return Container(
+      height: widget.height,
+      width: widget.width,
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: widget.height * 0.8,
+            width: widget.width * 0.9,
+            child: Row(
+              children: <Widget>[
+                Container(
+                  height: widget.height * 0.60,
+                  width: widget.width * 0.28,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(7),
+                    child: Image.network(
+                      widget.food.foodImage,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  onPressed: () {
-                    return buildShowDialog(
-                        context,
-                        widget.food.foodName,
-                        widget.food.foodPrice,
-                        widget.food.stock,
-                        vendor,
-                        widget.food.uid,
-                        widget.food.foodImage);
-                  },
                 ),
-                leading: Container(
-                  height: widget.height * 0.09,
-                  width: 280,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 2, 0, 2),
+                  height: widget.height * 0.6,
+                  width: widget.width * 0.38,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        height: 50,
-                        width: 80,
-                        padding: EdgeInsets.all(3),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: Image.network(
-                            widget.food.foodImage,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                      Text(
+                        widget.food.foodName,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: "Montserrat",
+                            fontWeight: FontWeight.w500),
                       ),
-                      Text(widget.food.foodName),
-                      Text('\$' + (widget.food.foodPrice / 100).toString()),
-                      Text((widget.food.stock).toString())
+                      Text("Stock: ${widget.food.stock.toString()}",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: "Montserrat",
+                              fontWeight: FontWeight.w400)),
+                      Text(
+                          "Price: \$${(widget.food.foodPrice / 100).toStringAsFixed(2)}",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: "Montserrat",
+                              fontWeight: FontWeight.w400))
                     ],
                   ),
-                ))));
+                ),
+                Container(
+                  height: widget.height * 0.75,
+                  width: widget.width * 0.2,
+                  child: Column(
+                    children: <Widget>[
+                      IconButton(
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            return buildShowDialog(
+                                context,
+                                widget.food.foodName,
+                                widget.food.foodPrice,
+                                widget.food.stock,
+                                vendor,
+                                widget.food.uid,
+                                widget.food.foodImage);
+                          }),
+                      IconButton(
+                        icon: Icon(Icons.delete, color: Colors.red),
+                        onPressed: () {
+                          return buildAlertDialog(context, widget.food, vendor);
+                        },
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Divider(
+            color: Colors.black,
+            endIndent: 22,
+            indent: 22,
+            thickness: 0.7,
+          )
+        ],
+      ),
+    );
   }
 
   buildShowDialog(BuildContext context, String foodname, int foodPrice,
@@ -169,5 +210,34 @@ class _FoodTileState extends State<FoodTile> {
         );
       },
     );
+  }
+
+  buildAlertDialog(BuildContext context, Food food, Vendor vendor) async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+                "Are you sure you want to delete this item from the menu?"),
+            content: Container(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                FlatButton(
+                    child: Text('Yes'),
+                    onPressed: () async {
+                      await DataService().deleteFood(food, vendor);
+                      Navigator.of(context).pop();
+                    }),
+                FlatButton(
+                  child: Text('No'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            )),
+          );
+        });
   }
 }

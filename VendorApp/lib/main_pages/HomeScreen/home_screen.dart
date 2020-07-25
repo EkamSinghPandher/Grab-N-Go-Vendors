@@ -5,14 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './ScreenLayout.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   static const String id = 'home_screen';
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
     final User user = Provider.of<User>(context);
     return StreamProvider<List<Food>>(
