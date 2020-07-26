@@ -16,8 +16,8 @@ class HomeScreenLayout extends StatefulWidget {
 
 class _HomeScreenLayoutState extends State<HomeScreenLayout> {
   String foodname = '';
-  int foodprice = null;
-  int foodstock = null;
+  int foodprice;
+  int foodstock;
   @override
   Widget build(BuildContext context) {
     List<Food> menu = Provider.of<List<Food>>(context);
@@ -129,8 +129,8 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
             actions: <Widget>[
               FlatButton(
                 child: Text('Done'),
-                onPressed: () async {
-                  await DataService().updateMenu(
+                onPressed: () {
+                  DataService().updateMenu(
                       vendor,
                       Food(
                           uid: foodUID,

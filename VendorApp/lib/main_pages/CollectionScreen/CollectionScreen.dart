@@ -1,5 +1,4 @@
 import 'package:VendorApp/main_pages/CollectionScreen/CollectionList.dart';
-import 'package:VendorApp/main_pages/topBar.dart';
 import 'package:flutter/material.dart';
 
 class CollectionScreen extends StatefulWidget {

@@ -12,7 +12,8 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
       studentID: json['studentID'] as String,
       vendorID: json['vendorID'] as String,
       sendorID: json['sendorID'] as String,
-      time: json['time'].toDate() as DateTime);
+      time: DateTime.fromMillisecondsSinceEpoch(int.parse(json['time']),
+          isUtc: true));
 }
 
 Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
@@ -20,5 +21,5 @@ Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
       'studentID': instance.studentID,
       'vendorID': instance.vendorID,
       'sendorID': instance.sendorID,
-      'time': instance.time
+      'time': instance.time.toUtc().millisecondsSinceEpoch.toString()
     };

@@ -1,10 +1,8 @@
-import 'package:VendorApp/Models/Message.dart';
 import 'package:VendorApp/Models/Order.dart';
 import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/main_pages/OrdersScreen/messagesScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class OrderTile extends StatelessWidget {
   final Order order;
