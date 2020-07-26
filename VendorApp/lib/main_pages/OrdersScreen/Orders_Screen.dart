@@ -19,7 +19,7 @@ class _OrderScreenState extends State<OrderScreen> {
           children: [
             Container(
               alignment: Alignment.bottomCenter,
-              height: height * 0.1,
+              height: height * 0.09,
               child: FittedBox(
                 child: Text(
                   'Orders pending',

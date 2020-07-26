@@ -37,7 +37,7 @@ class _PageLogicState extends State<PageLogic> {
               child: Scaffold(
                 body: _children[_currentIndex],
                 bottomNavigationBar: Container(
-                  height: MediaQuery.of(context).size.height * 0.08,
+                  height: MediaQuery.of(context).size.height * 0.09,
                   child: BottomNavigationBar(
                     currentIndex: _currentIndex,
                     type: BottomNavigationBarType.fixed,
