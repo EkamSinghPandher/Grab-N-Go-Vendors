@@ -18,7 +18,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
           child: Column(
             children: [
               Container(
-                height: height * 0.1,
+                height: height * 0.09,
                 alignment: Alignment.bottomCenter,
                 child: FittedBox(
                   child: Text(
