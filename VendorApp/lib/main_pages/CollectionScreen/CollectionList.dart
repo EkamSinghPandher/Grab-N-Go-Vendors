@@ -28,12 +28,22 @@ class _CollectionListState extends State<CollectionList> {
             ))
         .toList();
     return Container(
+        alignment: tiles.isEmpty ? Alignment.center : Alignment.topCenter,
         height: widget.height,
-        child: ListView.builder(
-          itemBuilder: (ctx, index) {
-            return tiles[index];
-          },
-          itemCount: tiles.length,
-        ));
+        child: tiles.isEmpty
+            ? Text(
+                'No collections pending',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w300,
+                    fontSize: 24),
+              )
+            : ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return tiles[index];
+                },
+                itemCount: tiles.length,
+              ));
   }
 }

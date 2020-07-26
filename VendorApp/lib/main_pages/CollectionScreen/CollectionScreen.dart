@@ -18,11 +18,11 @@ class _CollectionScreenState extends State<CollectionScreen> {
           child: Column(
             children: [
               Container(
-                height: height * 0.09,
+                height: height * 0.11,
                 alignment: Alignment.bottomCenter,
                 child: FittedBox(
                   child: Text(
-                    'Collections pending',
+                    'Collections',
                     style: TextStyle(
                       color: Colors.blue.shade800,
                       fontFamily: 'Montserrat',
@@ -38,7 +38,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
               ),
               CollectionList(
                 width: width,
-                height: height * 0.8,
+                height: height * 0.78,
               )
             ],
           ),

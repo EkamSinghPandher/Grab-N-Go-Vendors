@@ -63,7 +63,9 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Add your food to the menu'),
+            title: Text(
+              'Add food your menu',
+            ),
             content: SingleChildScrollView(
               child: Column(children: [
                 TextFormField(
