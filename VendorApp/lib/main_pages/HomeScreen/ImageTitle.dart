@@ -59,11 +59,11 @@ class _ImageTitleState extends State<ImageTitle> {
                         )),
                   ),
                   Container(
-                    height: widget.height * 0.20,
+                    height: widget.height * 0.25,
                     width: widget.width,
                     padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
                     child: FittedBox(
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.contain,
                       child: Text(
                         vendor.stallName,
                         style: TextStyle(

@@ -15,31 +15,32 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       body: Container(
         height: height,
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 45, 0, 10),
-                child: FittedBox(
-                  child: Text(
-                    'Orders pending',
-                    style: TextStyle(
-                      color: Colors.blue.shade800,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30.0,
-                    ),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.bottomCenter,
+              height: height * 0.1,
+              child: FittedBox(
+                child: Text(
+                  'Orders pending',
+                  style: TextStyle(
+                    color: Colors.blue.shade800,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 30.0,
                   ),
-                  fit: BoxFit.fitHeight,
                 ),
-                height: height * 0.05,
+                fit: BoxFit.fitHeight,
               ),
-              OrderList(
-                width: width,
-                height: height * 0.79,
-              )
-            ],
-          ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            OrderList(
+              width: width,
+              height: height * 0.8,
+            )
+          ],
         ),
       ),
     );

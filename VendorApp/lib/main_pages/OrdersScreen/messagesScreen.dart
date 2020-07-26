@@ -29,7 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
         appBar: AppBar(
           leading: null,
           title: Text('Chat'),
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Color.fromRGBO(0, 136, 204, 100),
         ),
         body: SafeArea(
           child: Column(
@@ -55,14 +55,16 @@ class _ChatScreenState extends State<ChatScreen> {
                       onPressed: () {
                         //clears current message after sent
                         messageTextController.clear();
-                        DataService().sendMessage(
-                            widget.order,
-                            Message(
-                                time: DateTime.now(),
-                                text: messageText,
-                                studentID: widget.order.studentUID,
-                                vendorID: widget.order.vendorUID,
-                                sendorID: user.uid));
+                        messageText != null
+                            ? DataService().sendMessage(
+                                widget.order,
+                                Message(
+                                    time: DateTime.now(),
+                                    text: messageText,
+                                    studentID: widget.order.studentUID,
+                                    vendorID: widget.order.vendorUID,
+                                    sendorID: user.uid))
+                            : messageTextController.clear();
                       },
                       child: Text(
                         'Send',

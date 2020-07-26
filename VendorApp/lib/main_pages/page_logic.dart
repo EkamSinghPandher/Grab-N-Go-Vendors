@@ -36,32 +36,35 @@ class _PageLogicState extends State<PageLogic> {
                   DataService(uid: Provider.of<User>(context).uid).myOrders,
               child: Scaffold(
                 body: _children[_currentIndex],
-                bottomNavigationBar: BottomNavigationBar(
-                  currentIndex: _currentIndex,
-                  type: BottomNavigationBarType.fixed,
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
-                      title: Text('Home'),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.assignment),
-                      title: Text('Orders'),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.shopping_basket),
-                      title: Text('Collection'),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.person),
-                      title: Text('Profile'),
-                    ),
-                  ],
-                  onTap: (index) {
-                    setState(() {
-                      _currentIndex = index;
-                    });
-                  },
+                bottomNavigationBar: Container(
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  child: BottomNavigationBar(
+                    currentIndex: _currentIndex,
+                    type: BottomNavigationBarType.fixed,
+                    items: [
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        title: Text('Home'),
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.assignment),
+                        title: Text('Orders'),
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.shopping_basket),
+                        title: Text('Collection'),
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.person),
+                        title: Text('Profile'),
+                      ),
+                    ],
+                    onTap: (index) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
                 ),
               ),
             )));

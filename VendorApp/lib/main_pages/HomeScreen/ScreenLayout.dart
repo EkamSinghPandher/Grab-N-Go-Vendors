@@ -30,11 +30,11 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
           : SingleChildScrollView(
               child: Column(children: [
                 ImageTitle(
-                  height * 0.30,
+                  height * 0.35,
                   width,
                 ),
                 Stack(alignment: Alignment.bottomRight, children: [
-                  FoodCard(height * 0.68, menu == null ? [] : menu, width),
+                  FoodCard(height * 0.64, menu == null ? [] : menu, width),
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 15),
                     alignment: Alignment.centerRight,

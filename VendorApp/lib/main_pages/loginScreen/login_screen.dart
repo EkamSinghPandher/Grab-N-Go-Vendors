@@ -77,7 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextInput(
                             icon: Icon(
                               Icons.mail_outline,
-                              size: 30,
                             ),
                             field: TextFormField(
                               onChanged: (value) {
@@ -98,7 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextInput(
                             icon: Icon(
                               Icons.lock_outline,
-                              size: 30,
                             ),
                             field: TextFormField(
                               obscureText: true,

@@ -44,8 +44,8 @@ class AuthService {
         stallName: stallName,
       );
       await DataService(uid: user.uid).updateVendorData(newVendor);
-      await DataService(uid: user.uid).updateLocationData(newVendor);
-      await user.sendEmailVerification();
+      DataService(uid: user.uid).updateLocationData(newVendor);
+      user.sendEmailVerification();
       return _userFromData(user);
     } catch (error) {
       return null;
