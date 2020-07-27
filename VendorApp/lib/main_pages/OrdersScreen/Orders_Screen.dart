@@ -14,32 +14,34 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       body: Container(
         height: height,
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.bottomCenter,
-              height: height * 0.11,
-              child: FittedBox(
-                child: Text(
-                  'Orders',
-                  style: TextStyle(
-                    color: Colors.blue.shade800,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 30.0,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.bottomCenter,
+                height: height * 0.11,
+                child: FittedBox(
+                  child: Text(
+                    'Orders',
+                    style: TextStyle(
+                      color: Colors.blue.shade800,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 30.0,
+                    ),
                   ),
+                  fit: BoxFit.fitHeight,
                 ),
-                fit: BoxFit.fitHeight,
               ),
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            OrderList(
-              width: width,
-              height: height * 0.78,
-            )
-          ],
+              SizedBox(
+                height: height * 0.02,
+              ),
+              OrderList(
+                width: width,
+                height: height * 0.78,
+              )
+            ],
+          ),
         ),
       ),
     );

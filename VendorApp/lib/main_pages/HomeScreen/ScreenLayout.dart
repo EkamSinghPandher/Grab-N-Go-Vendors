@@ -59,24 +59,28 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
 
   saveDeviceToken(String uid) async {
     String fcmToken = await fcm.getToken();
-    if (fcmToken != null) {
-      var tokenref = db
-          .collection('Vendors')
-          .document(uid)
-          .collection('Tokens')
-          .document(fcmToken);
+    if (uid != null) {
+      if (fcmToken != null) {
+        var tokenref = db
+            .collection('Vendors')
+            .document(uid)
+            .collection('Tokens')
+            .document(fcmToken);
 
-      await tokenref.setData({
-        'token': fcmToken,
-        'createdAt': FieldValue.serverTimestamp(),
-        'platform': Platform.operatingSystem
-      });
+        await tokenref.setData({
+          'token': fcmToken,
+          'createdAt': FieldValue.serverTimestamp(),
+          'platform': Platform.operatingSystem
+        });
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    saveDeviceToken(Provider.of<Vendor>(context).uid);
+    saveDeviceToken(Provider.of<Vendor>(context) == null
+        ? null
+        : Provider.of<Vendor>(context).uid);
     List<Food> menu = Provider.of<List<Food>>(context);
     Vendor vendor = Provider.of<Vendor>(context);
     double width = MediaQuery.of(context).size.width;

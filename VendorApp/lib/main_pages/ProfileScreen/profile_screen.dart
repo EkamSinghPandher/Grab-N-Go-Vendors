@@ -1,7 +1,6 @@
 import 'package:VendorApp/Services/auth.dart';
 import 'package:VendorApp/Services/database.dart';
 import 'package:VendorApp/main_pages/HomeScreen/ImageCapture.dart';
-import 'package:VendorApp/main_pages/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:provider/provider.dart';
