@@ -45,7 +45,7 @@ class AuthService {
       );
       await DataService(uid: user.uid).updateVendorData(newVendor);
       DataService(uid: user.uid).updateLocationData(newVendor);
-      user.sendEmailVerification();
+      //user.sendEmailVerification();
       return _userFromData(user);
     } catch (error) {
       return null;
