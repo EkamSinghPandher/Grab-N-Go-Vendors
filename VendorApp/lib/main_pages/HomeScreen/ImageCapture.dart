@@ -44,6 +44,7 @@ class _ImageCaptureState extends State<ImageCapture> {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
               icon: Icon(Icons.photo_camera),
@@ -56,30 +57,41 @@ class _ImageCaptureState extends State<ImageCapture> {
           ],
         ),
       ),
-      body: ListView(
-        children: [
-          if (_imageFile != null) ...[
-            Image.file(File(_imageFile.path)),
-            Row(
+      body: _imageFile != null
+          ? ListView(
               children: [
-                FlatButton(
-                  onPressed: cropImage,
-                  child: Icon(Icons.crop),
-                ),
-                FlatButton(
-                  onPressed: clear,
-                  child: Icon(Icons.refresh),
-                )
+                if (_imageFile != null) ...[
+                  Image.file(File(_imageFile.path)),
+                  Row(
+                    children: [
+                      FlatButton(
+                        onPressed: cropImage,
+                        child: Icon(Icons.crop),
+                      ),
+                      FlatButton(
+                        onPressed: clear,
+                        child: Icon(Icons.refresh),
+                      )
+                    ],
+                  ),
+                  Uploader(
+                    file: File(_imageFile.path),
+                    vendor: widget.vendor,
+                    foodID: widget.foodID,
+                  ),
+                ],
               ],
+            )
+          : Center(
+              child: Text(
+                "Please select an image",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w300,
+                    fontSize: 24),
+              ),
             ),
-            Uploader(
-              file: File(_imageFile.path),
-              vendor: widget.vendor,
-              foodID: widget.foodID,
-            ),
-          ],
-        ],
-      ),
     );
   }
 }
