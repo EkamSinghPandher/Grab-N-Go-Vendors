@@ -20,21 +20,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Vendor vendor = Provider.of<Vendor>(context);
     String stallImage = vendor == null ? 'nothing' : vendor.stallImage;
     return Scaffold(
-      appBar: topBar(context, null),
+      appBar: AppBar(
+        title: Text(
+          "Grab N' Go",
+          style: TextStyle(
+            color: Colors.blue.shade800,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w500,
+            fontSize: 30.0,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+      ),
+
       body: Center(
         child: vendor == null
             ? CircularProgressIndicator()
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FloatingActionButton(
-                    child: Text('sign out'),
-                    onPressed: () async {
-                      _auth.signOut();
-                    },
+                  CircleAvatar(
+                    radius: 50.0,
                   ),
                   SizedBox(
-                    height: 20.0,
+                    width: 150,
+                    height: 50.0,
+                    child: Divider(
+                      color: Colors.blue.shade200,
+                    ),
                   ),
                   FlatButton(
                     color: Colors.grey,
@@ -75,6 +89,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       "change stall image",
                       style: TextStyle(color: Colors.white),
                     ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  FlatButton(
+                    child: Text('sign out'),
+                    onPressed: () async {
+                      _auth.signOut();
+                    },
                   ),
                 ],
               ),
