@@ -2,6 +2,7 @@ import 'package:VendorApp/Models/User.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,6 +36,8 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       Vendor newVendor = Vendor(
+        openingHour: TimeOfDay(hour: 8, minute: 0),
+        closingHour: TimeOfDay(hour: 20, minute: 0),
         loc: location,
         uid: user.uid,
         email: user.email,
@@ -45,7 +48,7 @@ class AuthService {
       );
       await DataService(uid: user.uid).updateVendorData(newVendor);
       DataService(uid: user.uid).updateLocationData(newVendor);
-      //user.sendEmailVerification();
+      user.sendEmailVerification();
       return _userFromData(user);
     } catch (error) {
       return null;

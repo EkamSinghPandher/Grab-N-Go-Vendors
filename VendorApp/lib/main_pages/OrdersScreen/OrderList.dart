@@ -43,6 +43,7 @@ class _OrderListState extends State<OrderList> {
                     fontSize: 24),
               )
             : ListView.builder(
+                physics: BouncingScrollPhysics(),
                 itemBuilder: (ctx, index) {
                   return tiles[index];
                 },

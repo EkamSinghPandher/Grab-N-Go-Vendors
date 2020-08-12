@@ -14,9 +14,13 @@ class Order {
   final bool isDone;
   final bool isCollected;
   final String orderImage;
+  final String stallName;
+  final String studName;
 
   Order(
-      {this.orderImage,
+      {this.stallName,
+      this.studName,
+      this.orderImage,
       this.vendorUID,
       this.studentUID,
       this.dateTime,
@@ -32,6 +36,8 @@ class Order {
 
   Order collectedOrder() {
     return Order(
+        stallName: this.stallName,
+        studName: this.studName,
         orderImage: this.orderImage,
         dateTime: this.dateTime,
         vendorUID: this.vendorUID,
@@ -46,6 +52,8 @@ class Order {
 
   Order doneOrder() {
     return Order(
+        stallName: this.stallName,
+        studName: this.studName,
         orderImage: this.orderImage,
         dateTime: this.dateTime,
         vendorUID: this.vendorUID,

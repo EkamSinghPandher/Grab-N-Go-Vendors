@@ -40,6 +40,7 @@ class _CollectionListState extends State<CollectionList> {
                     fontSize: 24),
               )
             : ListView.builder(
+                physics: BouncingScrollPhysics(),
                 itemBuilder: (ctx, index) {
                   return tiles[index];
                 },

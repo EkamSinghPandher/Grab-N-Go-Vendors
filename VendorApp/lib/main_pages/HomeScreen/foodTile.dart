@@ -1,7 +1,7 @@
 import 'package:VendorApp/Models/Food.dart';
 import 'package:VendorApp/Models/Vendor.dart';
 import 'package:VendorApp/Services/database.dart';
-import 'package:VendorApp/components/constants.dart';
+import 'package:VendorApp/components/dialogconsts.dart';
 import 'package:VendorApp/main_pages/HomeScreen/ImageCapture.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -120,7 +120,12 @@ class _FoodTileState extends State<FoodTile> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit your menu'),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          title: Text(
+            'Edit your menu',
+            textAlign: TextAlign.center,
+          ),
           content: SingleChildScrollView(
             child: Column(children: [
               TextFormField(
@@ -217,8 +222,12 @@ class _FoodTileState extends State<FoodTile> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Text(
-                "Are you sure you want to delete this item from the menu?"),
+              "Are you sure you want to delete this item from the menu?",
+              textAlign: TextAlign.center,
+            ),
             content: Container(
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

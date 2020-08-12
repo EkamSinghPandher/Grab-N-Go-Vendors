@@ -32,8 +32,8 @@ class _ImageTitleState extends State<ImageTitle> {
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40)),
+                        bottomLeft: Radius.circular(27),
+                        bottomRight: Radius.circular(27)),
                     child: Container(
                         width: widget.width,
                         height: widget.height,

@@ -9,8 +9,12 @@ class Message {
   final String vendorID;
   final String sendorID;
   final DateTime time;
+  final String studName;
+  final String stallName;
 
   Message({
+    this.studName,
+    this.stallName,
     this.time,
     this.text,
     this.studentID,

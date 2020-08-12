@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:VendorApp/Models/Food.dart';
 import 'package:VendorApp/Services/database.dart';
-import 'package:VendorApp/components/constants.dart';
+import 'package:VendorApp/components/dialogconsts.dart';
 import 'package:VendorApp/main_pages/HomeScreen/ImageCapture.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -126,8 +126,11 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Text(
               'Add food your menu',
+              textAlign: TextAlign.center,
             ),
             content: SingleChildScrollView(
               child: Form(
@@ -145,7 +148,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
                       hintText: 'Enter Your Foods Name',
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 10),
                   TextFormField(
                     keyboardType: TextInputType.numberWithOptions(),
                     validator: (val) =>
@@ -159,7 +162,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
                       hintText: 'Enter your Foods Price',
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 10),
                   TextFormField(
                     keyboardType: TextInputType.numberWithOptions(),
                     validator: (val) =>
@@ -173,7 +176,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout> {
                       hintText: 'Enter your Foods Stock',
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 10),
                   FlatButton.icon(
                     onPressed: () {
                       setState(() async {

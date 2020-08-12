@@ -19,7 +19,9 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
       quantity: json['quantity'] as int,
       isDone: json['isDone'] as bool,
       isCollected: json['isCollected'] as bool,
-      orderImage: json['orderImage'] as String);
+      orderImage: json['orderImage'] as String,
+      stallName: json['stallname'] as String,
+      studName: json['studName'] as String);
 }
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -32,5 +34,7 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'quantity': instance.quantity,
       'isDone': instance.isDone,
       'isCollected': instance.isCollected,
-      'orderImage': instance.orderImage
+      'orderImage': instance.orderImage,
+      'stallName': instance.stallName,
+      'stadName': instance.studName
     };

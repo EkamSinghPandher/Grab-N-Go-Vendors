@@ -63,6 +63,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         );
                         await DataService().updateVendorData(new Vendor(
+                          openingHour: vendor.openingHour,
+                          closingHour: vendor.closingHour,
                           loc: vendor.loc,
                           uid: vendor.uid,
                           stallName: vendor.stallName,
@@ -73,6 +75,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           phoneNumber: vendor.phoneNumber,
                         ));
                         DataService().updateLocationData(new Vendor(
+                          openingHour: vendor.openingHour,
+                          closingHour: vendor.closingHour,
                           loc: vendor.loc,
                           uid: vendor.uid,
                           stallName: vendor.stallName,

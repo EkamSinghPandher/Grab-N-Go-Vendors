@@ -15,6 +15,7 @@ class FoodCard extends StatelessWidget {
     return Container(
       height: height,
       child: ListView.builder(
+        physics: BouncingScrollPhysics(),
         itemBuilder: (ctx, index) {
           return tiles[index];
         },

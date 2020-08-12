@@ -12,7 +12,7 @@ export const sendToDevice = functions.firestore.document('Vendors/{vendorID}/{Or
     const tokens = querySnapshot.docs.map(snap => snap.id);
     const payload: admin.messaging.MessagingPayload = {
         notification:{
-            title: "New Message",
+            title: "New Message from" + message.studName,
             body: message.text,
             clickAction: 'FLUTTER_NOTIFICATION_CLICK'
         }

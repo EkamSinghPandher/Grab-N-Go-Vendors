@@ -1,7 +1,10 @@
 import 'package:VendorApp/Data/dummy_data.dart';
 import 'package:VendorApp/Services/auth.dart';
 import 'package:VendorApp/main_pages/loginScreen/TextInput.dart';
+import 'package:VendorApp/main_pages/loginScreen/loading_screen.dart';
 import 'package:VendorApp/main_pages/loginScreen/login_screen.dart';
+import 'package:fancy_dialog/FancyGif.dart';
+import 'package:fancy_dialog/fancy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:VendorApp/components/roundedButton.dart';
 import 'package:VendorApp/components/constants.dart';
@@ -29,13 +32,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: isLoading
-            ? Center(
-                child: Container(
-                    height: 400,
-                    width: 200,
-                    child: Dialog(
-                      child: CircularProgressIndicator(),
-                    )))
+            ? LoadingScreen()
             : SingleChildScrollView(
                 child: Form(
                   key: formKey,
@@ -197,6 +194,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     setState(() {
                                       isLoading = false;
                                     });
+                                    await buildShowDialog(context);
                                     Navigator.of(context)
                                         .pushReplacementNamed(LoginScreen.id);
                                   }
@@ -206,5 +204,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ]),
                 ),
               ));
+  }
+
+  buildShowDialog(BuildContext context) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) => FancyDialog(
+              descreption: 'Please verify your email by clicking the link sent',
+              gifPath: FancyGif.CHECK_MAIL,
+              title: '',
+            ));
   }
 }
